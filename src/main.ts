@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AllExceptionsFilters } from './filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,7 @@ async function bootstrap() {
     origin: process.env.CORS_ORIGINS,
   }),
 
+  app.useGlobalFilters(new AllExceptionsFilters())
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

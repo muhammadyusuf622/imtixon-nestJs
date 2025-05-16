@@ -1,9 +1,14 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { statusEnum } from "../enum";
 
 
 @Table({tableName: 'product', timestamps: true})
 export class ProductModel extends Model{
+
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column({type: DataType.UUID})
+    declare id: string;
   
   @Column({type: DataType.STRING})
   name: string;

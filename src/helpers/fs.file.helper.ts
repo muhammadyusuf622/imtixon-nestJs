@@ -10,9 +10,10 @@ import { promises } from "node:dns";
 @Injectable()
 export class FsHelper{
 
-  async uploadFile(file: Express.Multer.File, deleteFile: string = 'yet'){
+  async uploadFile(file: Express.Multer.File | undefined, deleteFile:string | undefined = undefined){
 
-    if(deleteFile != 'yet'){
+
+    if(deleteFile){
       try {
         const imgAbsalutPath = path.join(process.cwd())
         await fsPromis.unlink(imgAbsalutPath + deleteFile);

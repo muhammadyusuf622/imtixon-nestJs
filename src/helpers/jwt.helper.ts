@@ -22,6 +22,7 @@ export class JwtHelper{
 
   async verifyToken(token: string){
     try {
+      console.log("tokenkeladjnacjandkcnajdcnkacn", token)
     const openToken = await this.jwt.verifyAsync(token)
     return openToken
     } catch (error) {
